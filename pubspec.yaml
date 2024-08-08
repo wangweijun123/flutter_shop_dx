@@ -36,6 +36,18 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+  dio: ^5.5.0+1
+  flutter_swiper_null_safety: ^1.0.2
+  flutter_screenutil: ^5.9.3
+  url_launcher: ^6.2.4
+  easy_refresh: ^3.4.0
+  fluttertoast: ^8.2.5
+  fluro: ^2.0.5
+  flutter_html: ^3.0.0-beta.2
+  sqflite: ^2.3.2
+  shared_preferences: ^2.2.3
+  provider: ^6.1.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

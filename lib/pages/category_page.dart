@@ -88,9 +88,9 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
       onTap: () {
         var secondCategoryList = list[index].secondCategoryVO;
         var firstCategoryId = list[index].firstCategoryId;
-        Provider.of<CategoryProvider>(context)
+        Provider.of<CategoryProvider>(context, listen: false)
             .changeFirstCategory(firstCategoryId, index);
-        Provider.of<CategoryProvider>(context)
+        Provider.of<CategoryProvider>(context, listen: false)
             .getSecondCategory(secondCategoryList, firstCategoryId);
         //TODO 获取商品列表
         _getGoodList(context, firstCategoryId: firstCategoryId);
@@ -135,10 +135,11 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
   _getGoodList(context, {required String firstCategoryId}) {
     var data = {
       'firstCategoryId': firstCategoryId == null
-          ? Provider.of<CategoryProvider>(context).firstCategoryId
+          ? Provider.of<CategoryProvider>(context, listen: false)
+              .firstCategoryId
           : firstCategoryId,
-      'secondCategoryId':
-          Provider.of<CategoryProvider>(context).secondCategoryId,
+      'secondCategoryId': Provider.of<CategoryProvider>(context, listen: false)
+          .secondCategoryId,
       'page': 1
     };
 
@@ -146,7 +147,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
       var data = json.decode(val.toString());
       print('getCategoryGoods:::' + data.toString());
       CategoryGoodsListModel goodsList = CategoryGoodsListModel.fromJson(data);
-      Provider.of<CategoryGoodsListProvider>(context)
+      Provider.of<CategoryGoodsListProvider>(context, listen: false)
           .getGoodsList(goodsList.data);
     });
   }
@@ -193,7 +194,7 @@ class _RightCategoryNavState extends State<RightCategoryNav> {
 
     return InkWell(
       onTap: () {
-        Provider.of<CategoryProvider>(context)
+        Provider.of<CategoryProvider>(context, listen: false)
             .changeSecondIndex(index, item.secondCategoryId);
         //TODO 获取商品列表
         _getGoodList(context, item.secondCategoryId);

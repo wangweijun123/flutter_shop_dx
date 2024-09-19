@@ -8,13 +8,13 @@ import '../../providers/details_info_provider.dart';
 class DetailsWeb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var goodsDetail = Provider.of<DetailsInfoProvider>(context)
+    var goodsDetail = Provider.of<DetailsInfoProvider>(context, listen: false)
         .goodsInfo
         .data
         .goodInfo
         .goodsDetail;
 
-    var isLeft = Provider.of<DetailsInfoProvider>(context).isLeft;
+    var isLeft = Provider.of<DetailsInfoProvider>(context, listen: false).isLeft;
 
     if (isLeft) {
       return Container(

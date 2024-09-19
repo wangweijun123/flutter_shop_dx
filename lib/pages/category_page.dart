@@ -12,6 +12,7 @@ import '../providers/category_provider.dart';
 import '../providers/category_goods_list_provider.dart';
 import '../model/category_goods_list_model.dart';
 import '../routers/application.dart';
+import 'details_page.dart';
 
 //分类页面
 class CategoryPage extends StatefulWidget {
@@ -127,7 +128,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
         list = category.data;
       });
 
-      Provider.of<CategoryProvider>(context)
+      Provider.of<CategoryProvider>(context, listen: false)
           .getSecondCategory(list[0].secondCategoryVO, '4');
     });
   }
@@ -340,9 +341,12 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
   Widget _ListWidget(List newList, int index) {
     return InkWell(
       onTap: () {
-        //TODO 跳转到商品详情页
-        // Application.router
-        //     .navigateTo(context, "/detail?id=${newList[index].goodsId}");
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailsPage(newList[index].goodsId),
+          ),
+        );
       },
       child: Container(
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0),

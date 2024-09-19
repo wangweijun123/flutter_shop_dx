@@ -15,7 +15,7 @@ class CartProvider with ChangeNotifier {
   save(goodsId, goodsName, int count, price, images) async {
     //初始化SharedPreferences
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    cartString = prefs.getString('cartInfo')!; //获取持久化存储的值
+    cartString = prefs.getString('cartInfo'); //获取持久化存储的值
     var temp = cartString == null ? [] : json.decode(cartString.toString());
     //把获取到的值转变为List
     List<Map> tempList = (temp as List).cast();

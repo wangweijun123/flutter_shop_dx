@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../providers/cart_provider.dart';
 import '../../config/index.dart';
+import '../../providers/details_info_provider.dart';
 
 //购物车底部组件
 class CartBottom extends StatelessWidget {
@@ -54,7 +55,8 @@ class CartBottom extends StatelessWidget {
 
   //合计区域
   Widget allPriceArea(BuildContext context) {
-    double allPrice = Provider.of<CartProvider>(context).allPrice;
+    double allPrice =
+        Provider.of<CartProvider>(context, listen: false).allPrice;
     String allPriceStr = allPrice.toStringAsFixed(2);
 
     return Container(
@@ -105,7 +107,8 @@ class CartBottom extends StatelessWidget {
 
   //结算按钮
   Widget goButton(BuildContext context) {
-    num allGoodsCount = Provider.of<CartProvider>(context).allGoodsCount;
+    num allGoodsCount =
+        Provider.of<CartProvider>(context, listen: false).allGoodsCount;
     return Container(
       width: ScreenUtil().setWidth(160),
       padding: EdgeInsets.only(left: 10),

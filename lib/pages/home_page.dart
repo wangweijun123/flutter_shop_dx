@@ -7,11 +7,13 @@ import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
 import '../config/index.dart';
+import '../log/log_constanst.dart';
 import '../service/http_service.dart';
 import '../model/category_model.dart';
 import '../providers/category_provider.dart';
 import '../providers/current_index_provider.dart';
 import '../routers/application.dart';
+import 'details_page.dart';
 
 class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
@@ -292,11 +294,11 @@ class TopNavigator extends StatelessWidget {
       var data = json.decode(val.toString());
       CategoryModel category = CategoryModel.fromJson(data);
       List list = category.data;
-      Provider.of<CategoryProvider>(context)
+      Provider.of<CategoryProvider>(context, listen: false)
           .changeFirstCategory(categoryId, index);
-      Provider.of<CategoryProvider>(context)
+      Provider.of<CategoryProvider>(context, listen: false)
           .getSecondCategory(list[index].secondCategoryVO, categoryId);
-      Provider.of<CurrentIndexProvider>(context).changeIndex(1);
+      Provider.of<CurrentIndexProvider>(context, listen: false).changeIndex(1);
     });
   }
 }
@@ -355,6 +357,18 @@ class RecommendUI extends StatelessWidget {
       onTap: () {
         // Application.router.navigateTo(
         //     context, "/detail?id=${recommandList[index]['goodsId']}");
+        var item = recommandList[index];
+        myPrint("push index = $index, item = ${item} ");
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailsPage(item['goodsId']),
+            // settings: const RouteSettings(
+            //   arguments: {'id': '123'},
+            // ),
+          ),
+        );
       },
       child: Container(
         width: ScreenUtil().setWidth(280),

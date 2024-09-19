@@ -42,7 +42,8 @@ class CartItem extends StatelessWidget {
           activeColor: KColor.checkBoxColor,
           onChanged: (bool? val) {
             item.isCheck = val!;
-            Provider.of<CartProvider>(context).changeCheckState(item);
+            Provider.of<CartProvider>(context, listen: false)
+                .changeCheckState(item);
           }),
     );
   }
@@ -88,7 +89,8 @@ class CartItem extends StatelessWidget {
             child: InkWell(
               onTap: () {
                 //删除商品
-                Provider.of<CartProvider>(context).deleteOneGoods(item.goodsId);
+                Provider.of<CartProvider>(context, listen: false)
+                    .deleteOneGoods(item.goodsId);
               },
               child: Icon(
                 Icons.delete_forever,

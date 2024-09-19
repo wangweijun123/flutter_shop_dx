@@ -8,8 +8,10 @@ import '../../config/index.dart';
 class DetailsTopArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var goodsInfo =
-        Provider.of<DetailsInfoProvider>(context).goodsInfo.data.goodInfo;
+    var goodsInfo = Provider.of<DetailsInfoProvider>(context, listen: false)
+        .goodsInfo
+        .data
+        .goodInfo;
 
     if (goodsInfo != null) {
       return Container(

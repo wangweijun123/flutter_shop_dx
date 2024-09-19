@@ -78,7 +78,8 @@ class DetailsPageState extends State<DetailsPage> {
       setState(() {
         goodsInfo = DetailsModel.fromJson(responseData);
       });
-      Provider.of<DetailsInfoProvider>(context).goodsInfo = goodsInfo!;
+      Provider.of<DetailsInfoProvider>(context, listen: false).goodsInfo =
+          goodsInfo!;
       print('getGoodDetail:::' + responseData.toString());
     });
   }

@@ -9,8 +9,10 @@ import '../../providers/details_info_provider.dart';
 class DetailBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var goodsInfo =
-        Provider.of<DetailsInfoProvider>(context).goodsInfo.data.goodInfo;
+    var goodsInfo = Provider.of<DetailsInfoProvider>(context, listen: false)
+        .goodsInfo
+        .data
+        .goodInfo;
 
     var goodsID = goodsInfo.goodsId;
     var goodsName = goodsInfo.goodsName;
@@ -73,7 +75,7 @@ class DetailBottom extends StatelessWidget {
           InkWell(
             onTap: () async {
               //添加至购物车
-              await Provider.of<CartProvider>(context)
+              await Provider.of<CartProvider>(context, listen: false)
                   .save(goodsID, goodsName, count, price, images);
             },
             child: Container(

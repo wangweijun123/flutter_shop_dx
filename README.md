@@ -18,3 +18,6 @@ samples, guidance on mobile development, and a full API reference.
 
 路由搞定
 https://docs.flutter.cn/community/tutorials/understanding-navigator-v2/
+
+D:\>cd work\node_shop_server
+D:\work\node_shop_server>npm start

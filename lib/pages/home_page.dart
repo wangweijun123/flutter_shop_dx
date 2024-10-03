@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     print('首页刷新了...');
+    _getHotGoods();
   }
 
   @override
@@ -112,6 +113,7 @@ class _HomePageState extends State<HomePage>
     request('getHotGoods', formData: formPage).then((val) {
       var data = json.decode(val.toString());
       List<Map> newGoodsList = (data['data'] as List).cast();
+      myPrint("_getHotGoods newGoodsList.size = ${newGoodsList.length}");
       //设置火爆专区数据列表
       setState(() {
         hotGoodsList.addAll(newGoodsList);
